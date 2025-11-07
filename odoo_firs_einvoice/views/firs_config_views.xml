@@ -1,0 +1,24 @@
+<odoo>
+  <record id="view_firs_config_settings" model="ir.ui.view">
+    <field name="name">firs.config.settings</field>
+    <field name="model">res.config.settings</field>
+    <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+    <field name="arch" type="xml">
+      <xpath expr="//form" position="inside">
+        <group string="FIRS e-Invoice Integration" name="firs_config_group">
+          <separator string="FIRS e-Invoice (TaxPro Max)"/>
+          <field name="firs_environment"/>
+          <field name="firs_api_url"/>
+          <field name="firs_entry_id"/>
+          <field name="firs_business_id"/>
+          <field name="firs_api_key"/>
+          <field name="firs_client_secret" password="True"/>
+          <field name="firs_irn_template"/>
+          <field name="firs_tin"/>
+          <button name="action_test_connection" type="object" string="Test FIRS Connection" class="btn-secondary"/>
+          <div class="o_form_label text-muted">Configure FIRS e-Invoice API credentials. Use Sandbox for test, Production for live.</div>
+        </group>
+      </xpath>
+    </field>
+  </record>
+</odoo>
