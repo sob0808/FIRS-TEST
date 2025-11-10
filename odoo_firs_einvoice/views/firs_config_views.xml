@@ -18,11 +18,25 @@
                             </div>
                             <div class="row mt16">
                                 <label for="firs_api_url" string="API URL" class="col-lg-3 o_light_label"/>
-                                <field name="firs_api_url" placeholder="https://api.taxpromax.com/einvoice/v1"/>
+                                <field name="firs_api_url" placeholder="https://eivc-k6z6d.ondigitalocean.app/api"/>
+                            </div>
+                            <div class="row mt16">
+                                <label for="firs_api_endpoint" string="API Endpoint Path" class="col-lg-3 o_light_label"/>
+                                <field name="firs_api_endpoint" placeholder="/api/v1/invoice/sign"/>
+                                <div class="col-lg-9">
+                                    <small class="text-muted">Default: /api/v1/invoice/sign (from FIRS API docs). If base URL ends with /api, use /v1/invoice/sign</small>
+                                </div>
                             </div>
                             <div class="row mt16">
                                 <label for="firs_entry_id" string="Entry ID" class="col-lg-3 o_light_label"/>
                                 <field name="firs_entry_id"/>
+                            </div>
+                            <div class="row mt16">
+                                <label for="firs_service_id" string="Service ID" class="col-lg-3 o_light_label"/>
+                                <field name="firs_service_id" placeholder="94ND90NR"/>
+                                <div class="col-lg-9">
+                                    <small class="text-muted">8 characters, alphanumeric. Required for IRN generation.</small>
+                                </div>
                             </div>
                             <div class="row mt16">
                                 <label for="firs_business_id" string="Business ID" class="col-lg-3 o_light_label"/>
