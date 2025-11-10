@@ -148,28 +148,27 @@ class AccountMove(models.Model):
             'party_name': partner.name or '',
         }
         
-        # TIN is mandatory for supplier, optional for customer
+        # TIN is mandatory for both supplier and customer (per API requirements)
         if is_supplier:
             party['tin'] = partner.vat or conf.get_param('firs.tin') or ''
             if not party['tin']:
                 raise UserError(_('Supplier TIN is required for FIRS e-Invoice. Please set VAT/TIN on company or partner.'))
         else:
+            # Customer TIN is now mandatory per API
             party['tin'] = partner.vat or ''
+            if not party['tin']:
+                raise UserError(_('Customer TIN is required for FIRS e-Invoice. Please set VAT/TIN on customer partner.'))
         
-        # Email is mandatory for supplier
+        # Email is mandatory for both supplier and customer (per API requirements)
         if is_supplier:
             party['email'] = partner.email or self.company_id.email or ''
             if not party['email']:
                 raise UserError(_('Supplier email is required for FIRS e-Invoice. Please set email on company.'))
         else:
+            # Customer email is now mandatory per API
             party['email'] = partner.email or ''
-        
-        if partner.phone:
-            # Ensure phone starts with + for country code
-            phone = partner.phone.strip()
-            if not phone.startswith('+'):
-                phone = '+234' + phone.lstrip('0')
-            party['telephone'] = phone
+            if not party['email']:
+                raise UserError(_('Customer email is required for FIRS e-Invoice. Please set email on customer partner.'))
         
         if partner.comment:
             party['business_description'] = partner.comment[:500]  # Limit length
@@ -363,11 +362,15 @@ class AccountMove(models.Model):
         if self.narration:
             payload['note'] = self.narration[:500]
         
-        # Customer party (optional but recommended)
-        if self.partner_id:
-            customer_party = self._firs_get_party(self.partner_id, is_supplier=False)
-            if customer_party:
-                payload['accounting_customer_party'] = customer_party
+        # Customer party (mandatory per API - must have TIN and email)
+        if not self.partner_id:
+            raise UserError(_('Customer is required for FIRS e-Invoice. Please select a customer on the invoice.'))
+        
+        customer_party = self._firs_get_party(self.partner_id, is_supplier=False)
+        if not customer_party:
+            raise UserError(_('Failed to build customer party information. Please ensure customer has TIN and email.'))
+        
+        payload['accounting_customer_party'] = customer_party
         
         # Tax total (mandatory)
         # According to API docs, tax_total is an array
