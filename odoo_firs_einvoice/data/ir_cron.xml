@@ -3,7 +3,7 @@
     <field name="name">Retry FIRS e-Invoice Submission</field>
     <field name="model_id" ref="account.model_account_move"/>
     <field name="state">code</field>
-    <field name="code">model.search([('firs_status','=','error')], limit=50).mapped('action_firs_send')</field>
+    <field name="code">model.search([('firs_status','=','error'), ('move_type','=','out_invoice')], limit=50).action_firs_send()</field>
     <field name="interval_number">15</field>
     <field name="interval_type">minutes</field>
     <field name="active">True</field>
