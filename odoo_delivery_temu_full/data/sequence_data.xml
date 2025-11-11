@@ -1,0 +1,8 @@
+<odoo>
+    <record id="seq_delivery_batch" model="ir.sequence">
+        <field name="name">Delivery Batch</field>
+        <field name="code">delivery.batch</field>
+        <field name="prefix">TEMU-%(year)s-</field>
+        <field name="padding">4</field>
+    </record>
+</odoo>

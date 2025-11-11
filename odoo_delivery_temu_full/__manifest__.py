@@ -2,6 +2,7 @@
     "name": "Delivery Intake - TEMU",
     "version": "18.0.1.0.0",
     "summary": "Scan TEMU packages, batch them and assign warehouse locations",
+    "description": "Scan, batch, and assign TEMU packages to stock locations.",
     "category": "Warehouse/Delivery",
     "depends": ["base", "stock", "barcodes"],
     "data": [
