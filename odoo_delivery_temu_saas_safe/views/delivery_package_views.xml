@@ -1,0 +1,49 @@
+<odoo>
+    <record id="view_delivery_package_list" model="ir.ui.view">
+        <field name="name">delivery.package.list</field>
+        <field name="model">delivery.package</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="sender"/>
+                <field name="recipient_name"/>
+                <field name="batch_id"/>
+                <field name="status"/>
+                <field name="location_id"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_delivery_package_form" model="ir.ui.view">
+        <field name="name">delivery.package.form</field>
+        <field name="model">delivery.package</field>
+        <field name="arch" type="xml">
+            <form string="Delivery Package">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="barcode"/>
+                        <field name="sender"/>
+                        <field name="recipient_name"/>
+                        <field name="weight"/>
+                        <field name="batch_id"/>
+                        <field name="location_id"/>
+                        <field name="status"/>
+                    </group>
+                    <group>
+                        <field name="scan_time"/>
+                        <field name="note"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_delivery_package" model="ir.actions.act_window">
+        <field name="name">Delivery Packages</field>
+        <field name="res_model">delivery.package</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_delivery_packages" name="Packages" parent="menu_delivery_root" action="action_delivery_package"/>
+</odoo>
