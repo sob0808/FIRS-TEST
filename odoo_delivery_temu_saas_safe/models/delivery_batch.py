@@ -15,7 +15,7 @@ class DeliveryBatch(models.Model):
     @api.model
     def create(self, vals):
         if vals.get('name', 'New') == 'New':
-            seq = self.env.ref('odoo_delivery_temu_final.seq_delivery_batch', raise_if_not_found=False)
+            seq = self.env.ref('odoo_delivery_temu_saas_safe.seq_delivery_batch', raise_if_not_found=False)
             vals['name'] = seq.next_by_id() if seq else self.env['ir.sequence'].next_by_code('delivery.batch')
         return super().create(vals)
 

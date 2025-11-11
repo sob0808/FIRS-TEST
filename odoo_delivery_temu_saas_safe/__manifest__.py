@@ -1,8 +1,8 @@
 {
-    "name": "Delivery Intake - TEMU (Final)",
-    "version": "18.0.2.0.0",
+    "name": "Delivery Intake - TEMU (SaaS-safe)",
+    "version": "18.0.3.0.0",
     "summary": "Scan TEMU packages, batch them and assign internal locations (SaaS-safe)",
-    "description": "Odoo 18 compatible module for scanning and batching TEMU packages. Uses an internal location model to avoid requiring the stock app (safe for Odoo Online).",
+    "description": "Odoo 18 compatible module for scanning and batching TEMU packages. Uses an internal location model to avoid requiring the stock app.",
     "category": "Warehouse/Delivery",
     "depends": ["base","barcodes"],
     "data": [
