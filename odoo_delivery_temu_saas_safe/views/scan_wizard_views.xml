@@ -1,0 +1,30 @@
+<odoo>
+    <record id="action_open_scan_wizard" model="ir.actions.act_window">
+        <field name="name">Start Scanning</field>
+        <field name="res_model">delivery.scan.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <record id="view_scan_wizard_form" model="ir.ui.view">
+        <field name="name">delivery.scan.wizard.form</field>
+        <field name="model">delivery.scan.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Scan Package">
+                <sheet>
+                    <group>
+                        <field name="batch_id"/>
+                        <field name="barcode"/>
+                        <field name="recipient_name"/>
+                        <field name="weight"/>
+                        <field name="assign_location"/>
+                    </group>
+                    <footer>
+                        <button string="Add Package" type="object" name="action_add_package" class="btn-primary"/>
+                        <button string="Cancel" special="cancel" class="btn-secondary"/>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>
