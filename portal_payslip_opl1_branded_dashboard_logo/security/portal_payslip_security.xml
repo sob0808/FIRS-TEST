@@ -1,4 +1,3 @@
-
 <odoo>
     <record id="payslip_portal_rule" model="ir.rule">
         <field name="name">Portal: Own Payslips</field>

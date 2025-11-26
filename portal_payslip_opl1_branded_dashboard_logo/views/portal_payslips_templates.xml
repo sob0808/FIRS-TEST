@@ -1,12 +1,8 @@
-
 <odoo>
     <template id="portal_no_employee">
         <t t-call="website.layout">
             <div class="container mt-4">
-                <img src="/portal_payslip_saas_full_feature_opl1_branded_final/static/src/img/company_logo.png" style="height:60px;">
-                <div class="alert alert-danger mt-3">
-                    No employee is linked to your user account.
-                </div>
+                <div class="alert alert-danger">No employee record is linked to your user account.</div>
             </div>
         </t>
     </template>
@@ -14,7 +10,7 @@
     <template id="portal_my_payslips_page">
         <t t-call="website.layout">
             <div class="container mt-4">
-                <img src="/portal_payslip_saas_full_feature_opl1_branded_final/static/src/img/company_logo.png" style="height:60px;">
+                <img src="/portal_payslip_opl1_branded_dashboard_logo/static/src/img/company_logo.png" style="height:60px;" />
                 <h2 class="mt-3">My Payslips</h2>
 
                 <form method="get" class="row mb-4 mt-3">

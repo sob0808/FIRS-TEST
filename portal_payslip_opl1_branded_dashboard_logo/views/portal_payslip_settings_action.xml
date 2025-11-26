@@ -1,4 +1,3 @@
-
 <odoo>
     <record id="portal_payslip_settings_action" model="ir.actions.act_window">
         <field name="name">Portal Payslip Settings</field>
