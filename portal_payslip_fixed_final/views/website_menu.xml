@@ -1,8 +1,0 @@
-
-<odoo>
- <record id="menu_pp" model="website.menu">
-   <field name="name">My Payslips</field>
-   <field name="url">/my/payslips</field>
-   <field name="parent_id" ref="website.main_menu"/>
- </record>
-</odoo>

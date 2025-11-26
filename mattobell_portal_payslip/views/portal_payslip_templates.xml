@@ -1,0 +1,99 @@
+<odoo>
+    <template id="portal_no_employee">
+        <t t-call="website.layout">
+            <div class="container mt-4">
+                <div class="alert alert-danger">No employee record is linked to your user account.</div>
+            </div>
+        </t>
+    </template>
+
+    <template id="portal_my_payslips_page" name="My Payslips">
+        <t t-call="website.layout">
+            <div class="container mt-4">
+                <!-- optional logo if present -->
+                <t t-if="request.env['ir.config_parameter'].sudo().get_param('mattobell.show_logo','1')=='1'">
+                    <t t-set="logo_path">'/mattobell_portal_payslip/static/src/img/company_logo.png'</t>
+                    <t t-if="logo_path">
+                        <img t-att-src="logo_path" style="height:60px;" />
+                    </t>
+                </t>
+
+                <div class="d-flex justify-content-between align-items-center mb-3 mt-2">
+                    <h2><i class="fa fa-file-invoice-dollar"></i> My Payslips</h2>
+                    <a class="btn btn-outline-secondary" href="/my">Back</a>
+                </div>
+
+                <form method="get" class="row mb-4">
+                    <div class="col-md-4">
+                        <label>Month</label>
+                        <select name="month" class="form-select">
+                            <option value="">All</option>
+                            <t t-foreach="range(1,13)" t-as="m">
+                                <option t-att-value="m" t-att-selected="m == selected_month"><t t-esc="m"/></option>
+                            </t>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label>Year</label>
+                        <select name="year" class="form-select">
+                            <option value="">All</option>
+                            <t t-foreach="range(2020,2031)" t-as="y">
+                                <option t-att-value="y" t-att-selected="y == selected_year"><t t-esc="y"/></option>
+                            </t>
+                        </select>
+                    </div>
+                    <div class="col-md-4 d-flex align-items-end">
+                        <button class="btn btn-primary w-100">Apply Filters</button>
+                    </div>
+                </form>
+
+                <div class="row mb-4">
+                    <div class="col-md-3">
+                        <div class="card p-3 shadow-sm text-center">
+                            <h3><t t-esc="total_payslips"/></h3>
+                            <p>Total Payslips</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card p-3 shadow-sm text-center">
+                            <h5 class="mb-0"><t t-esc="last_period or '—'"/></h5>
+                            <p class="mb-0">Last Payslip Period</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <t t-foreach="payslips" t-as="slip">
+                        <div class="col-md-4 mb-4">
+                            <div class="card p-3 shadow-sm h-100 d-flex flex-column">
+                                <div>
+                                    <h4 class="card-title mb-1"><t t-esc="slip.number or 'Payslip'"/></h4>
+                                    <p class="text-muted mb-1"><small>Period:</small> <t t-esc="slip.date_from"/> → <t t-esc="slip.date_to"/></p>
+                                    <span class="badge bg-info text-dark"><t t-esc="slip.state"/></span>
+                                </div>
+
+                                <div class="mt-auto">
+                                    <a t-attf-href="/my/payslips/{{ slip.id }}/download?watermark=1" class="btn btn-primary btn-sm w-100 mb-2"><i class="fa fa-download"></i> Download Payslip</a>
+
+                                    <t t-if="attachments.get(slip.id) and len(attachments.get(slip.id))">
+                                        <small class="text-muted">Attachments:</small>
+                                        <ul class="list-unstyled small ms-0">
+                                            <t t-foreach="attachments[slip.id]" t-as="att">
+                                                <li><a t-att-href="'/web/content/%s?download=1' % att.id"><i class="fa fa-paperclip"></i> <t t-esc="att.name"/></a></li>
+                                            </t>
+                                        </ul>
+                                    </t>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                    <t t-if="not payslips">
+                        <div class="col-12">
+                            <div class="alert alert-info">No payslips found for the selected period.</div>
+                        </div>
+                    </t>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>
