@@ -1,7 +1,7 @@
 {
-    'name': 'Portal Payslip - SaaS Clean',
-    'version': '1.0.0',
-    'summary': 'Employee payslip portal page (SaaS-clean) with website menu link',
+    'name': 'Portal Payslip - SaaS Clean Strict (Final)',
+    'version': '1.0.2',
+    'summary': 'Employee payslip portal page for Odoo SaaS (strict portal auth, friendly message)',
     'category': 'Human Resources',
     'depends': ['hr_payroll', 'portal', 'website'],
     'data': [
@@ -13,7 +13,7 @@
     ],
     'assets': {
         'web.assets_frontend': [
-            '/portal_payslip_saas_clean/static/src/css/portal_styles.css',
+            '/portal_payslip_saas_clean_strict_final/static/src/css/portal_styles.css',
         ],
     },
     'installable': True,

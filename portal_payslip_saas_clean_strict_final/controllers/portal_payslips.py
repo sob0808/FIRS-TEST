@@ -8,29 +8,39 @@ try:
 except Exception:
     PYPDF2_AVAILABLE = False
 
+
 class PortalPayslips(http.Controller):
 
     @http.route(['/my/payslips'], type='http', auth='portal', website=True)
     def portal_my_payslips(self, month=None, year=None, **kw):
-        domain = [('employee_id.user_id', '=', request.uid)]
+        user = request.env.user
+        # find employee linked to current user
+        employee = request.env['hr.employee'].sudo().search([('user_id','=', user.id)], limit=1)
+        if not employee:
+            return request.render('portal_payslip_saas_clean_strict_final.portal_no_employee')
+
+        domain = [('employee_id','=', employee.id)]
+
         if month and year:
             try:
                 m = int(month); y = int(year)
-                domain += [('date_from', '>=', f"{y}-{m:02d}-01"), ('date_to', '<=', f"{y}-{m:02d}-31")]
+                domain += [('date_from','>=', f"{y}-{m:02d}-01"),
+                           ('date_to','<=', f"{y}-{m:02d}-31")]
             except:
                 pass
         elif year:
             try:
                 y = int(year)
-                domain += [('date_from', '>=', f"{y}-01-01"), ('date_to', '<=', f"{y}-12-31")]
+                domain += [('date_from','>=', f"{y}-01-01"),
+                           ('date_to','<=', f"{y}-12-31")]
             except:
                 pass
 
-        payslips = request.env['hr.payslip'].search(domain, order="date_from desc")
-        Att = request.env['ir.attachment']
+        payslips = request.env['hr.payslip'].sudo().search(domain, order="date_from desc")
+        Att = request.env['ir.attachment'].sudo()
         attachments = {slip.id: Att.search([('res_model','=','hr.payslip'),('res_id','=', slip.id)]) for slip in payslips}
 
-        return request.render('portal_payslip_saas_clean.portal_my_payslips_page', {
+        return request.render('portal_payslip_saas_clean_strict_final.portal_my_payslips_page', {
             'payslips': payslips,
             'attachments': attachments,
             'selected_month': int(month) if month else None,
