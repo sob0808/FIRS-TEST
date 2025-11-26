@@ -9,7 +9,6 @@
                     </div>
                 </div>
 
-                <!-- Filter Bar -->
                 <form method="get" class="row g-3 mb-4">
                     <div class="col-md-4">
                         <label>Month</label>
@@ -40,7 +39,6 @@
                     </div>
                 </form>
 
-                <!-- KPI row -->
                 <div class="row mb-4">
                     <div class="col-md-3">
                         <div class="card shadow-sm p-3 text-center">
@@ -56,7 +54,6 @@
                     </div>
                 </div>
 
-                <!-- Payslip Cards Grid -->
                 <div class="row">
                     <t t-foreach="payslips" t-as="slip">
                         <div class="col-md-4 mb-4">

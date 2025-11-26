@@ -1,0 +1,13 @@
+<odoo>
+    <record id="action_portal_payslip_settings" model="ir.actions.act_window">
+        <field name="name">Portal Payslip Settings</field>
+        <field name="res_model">portal.payslip.settings</field>
+        <field name="view_mode">form,tree</field>
+        <field name="view_id" ref="view_portal_payslip_settings_form"/>
+        <field name="target">current</field>
+    </record>
+
+    <!-- Optional: menu under Settings (visible to Settings users) -->
+    <menuitem id="menu_portal_payslip_root" name="Portal Payslip" parent="base.menu_administration" sequence="95"/>
+    <menuitem id="menu_portal_payslip_settings" name="Payslip Settings" parent="menu_portal_payslip_root" action="action_portal_payslip_settings" sequence="1"/>
+</odoo>
