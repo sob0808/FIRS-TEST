@@ -8,7 +8,7 @@ class PortalPayslipController(http.Controller):
         user = request.env.user
         emp = request.env['hr.employee'].sudo().search([('user_id','=', user.id)], limit=1)
         if not emp:
-            return request.render('mattobell_portal_payslip_final.portal_no_employee')
+            return request.render('mattobell_portal_payslip.portal_no_employee')
 
         domain = [('employee_id','=', emp.id)]
         if month and year:
@@ -28,7 +28,7 @@ class PortalPayslipController(http.Controller):
         Att = request.env['ir.attachment'].sudo()
         attachments = {s.id: Att.search([('res_model','=','hr.payslip'), ('res_id','=', s.id)]) for s in slips}
 
-        return request.render('mattobell_portal_payslip_final.portal_payslips_page', {
+        return request.render('mattobell_portal_payslip.portal_payslips_page', {
             'employee': emp,
             'payslips': slips,
             'attachments': attachments,
@@ -40,8 +40,11 @@ class PortalPayslipController(http.Controller):
     def portal_payslip_download(self, pid, watermark='1', **kw):
         slip = request.env['hr.payslip'].sudo().browse(pid)
         # allow only employee owner
-        if not slip.exists() or slip.employee_id.user_id.id != request.uid:
-            return request.not_found()
+        if not slip.exists() or (slip.employee_id.user_id and slip.employee_id.user_id.id != request.uid):
+            # also allow if employee.work_email matches user.email (hybrid match)
+            emp = slip.employee_id
+            if not (emp and emp.work_email and emp.work_email.strip().lower() == (request.env.user.email or '').strip().lower()):
+                return request.not_found()
 
         # try custom mattobell report first, fallback to default if available
         report = None

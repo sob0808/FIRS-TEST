@@ -1,8 +1,8 @@
 {
-    "name": "Mattobell Portal Payslip (Final)",
+    "name": "Mattobell Portal Payslip",
     "version": "1.0.0",
     "license": "OPL-1",
-    "summary": "Employee payslips on portal (/my/payslips) - Matt O'Bell",
+    "summary": "Portal payslip viewer (my/payslips) - Matt O'Bell",
     "category": "Human Resources",
     "depends": ["website","hr_payroll","portal"],
     "data": [
