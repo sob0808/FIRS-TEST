@@ -1,5 +1,4 @@
 <odoo>
-    <!-- Add a Website menu item pointing to /my/payslips -->
     <record id="website_menu_my_payslips" model="website.menu">
         <field name="name">My Payslips</field>
         <field name="url">/my/payslips</field>
