@@ -1,9 +1,0 @@
-<odoo>
-    <template id="portal_payslip_menu" inherit_id="portal.portal_layout">
-        <xpath expr="//nav//ul" position="inside">
-            <li>
-                <a t-attf-href="/my/payslips">My Payslips</a>
-            </li>
-        </xpath>
-    </template>
-</odoo>

@@ -1,0 +1,19 @@
+<odoo>
+    <record id="portal_payslip_settings_action" model="ir.actions.act_window">
+        <field name="name">Portal Payslip Settings</field>
+        <field name="res_model">portal.payslip.settings</field>
+        <field name="view_mode">form,tree</field>
+    </record>
+
+    <!-- Menu under Settings, SaaS-safe -->
+    <menuitem id="menu_portal_payslip_root"
+              name="Portal Payslip"
+              parent="base.menu_administration"
+              sequence="99"/>
+
+    <menuitem id="menu_portal_payslip_settings"
+              name="Settings"
+              parent="menu_portal_payslip_root"
+              action="portal_payslip_settings_action"
+              sequence="1"/>
+</odoo>
