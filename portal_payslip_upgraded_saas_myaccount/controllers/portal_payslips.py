@@ -41,7 +41,7 @@ class PortalPayslips(http.Controller):
             for slip in payslips
         }
 
-        return request.render('portal_payslip_upgraded_saas_final.portal_my_payslips_page', {
+        return request.render('portal_payslip_upgraded_saas_myaccount.portal_my_payslips_page', {
             'payslips': payslips,
             'attachments': attachments,
             'selected_month': int(month) if month else None,
@@ -61,8 +61,8 @@ class PortalPayslips(http.Controller):
         Settings = request.env['portal.payslip.settings'].sudo()
         settings = Settings.search([], limit=1)
 
-        sig = settings.signature_attachment
-        wm = settings.watermark_attachment
+        sig = settings.signature_attachment if settings else False
+        wm = settings.watermark_attachment if settings else False
 
         if PYPDF2_AVAILABLE and (sig or wm) and watermark == '1':
             try:
@@ -79,7 +79,7 @@ class PortalPayslips(http.Controller):
                 buf = io.BytesIO()
                 writer.write(buf)
                 pdf = buf.getvalue()
-            except:
+            except Exception:
                 pass
 
         return request.make_response(pdf, [
