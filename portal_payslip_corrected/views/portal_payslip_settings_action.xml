@@ -1,7 +1,0 @@
-<odoo>
-    <record id="portal_payslip_settings_action" model="ir.actions.act_window">
-        <field name="name">Portal Payslip Settings</field>
-        <field name="res_model">portal.payslip.settings</field>
-        <field name="view_mode">form</field>
-    </record>
-</odoo>
