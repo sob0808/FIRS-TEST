@@ -5,7 +5,6 @@
         <field name="view_mode">form,tree</field>
     </record>
 
-    <!-- Menu under Settings, SaaS-safe -->
     <menuitem id="menu_portal_payslip_root"
               name="Portal Payslip"
               parent="base.menu_administration"

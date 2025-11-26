@@ -41,7 +41,7 @@ class PortalPayslips(http.Controller):
             for slip in payslips
         }
 
-        return request.render('portal_payslip_upgraded_saas_fixed.portal_my_payslips_page', {
+        return request.render('portal_payslip_upgraded_saas_final.portal_my_payslips_page', {
             'payslips': payslips,
             'attachments': attachments,
             'selected_month': int(month) if month else None,
