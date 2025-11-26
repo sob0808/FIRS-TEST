@@ -1,13 +1,12 @@
 <odoo>
-    <template id="portal_my_payslips_page">
-        <t t-call="portal.portal_layout">
+    <template id="portal_my_payslips_page" name="My Payslips">
+        <t t-call="website.layout">
             <div class="container mt-4">
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <h2><i class="fa fa-file-invoice-dollar"></i> My Payslips</h2>
                     <a class="btn btn-outline-secondary" href="/my">Back</a>
                 </div>
 
-                <!-- Filters -->
                 <form method="get" class="row mb-4">
                     <div class="col-md-4">
                         <label>Month</label>
@@ -32,7 +31,6 @@
                     </div>
                 </form>
 
-                <!-- KPI Cards -->
                 <div class="row mb-4">
                     <div class="col-md-3">
                         <div class="card p-3 shadow-sm text-center">
@@ -48,30 +46,20 @@
                     </div>
                 </div>
 
-                <!-- Payslip Cards -->
                 <div class="row">
                     <t t-foreach="payslips" t-as="slip">
                         <div class="col-md-4 mb-3">
                             <div class="card p-3 shadow-sm h-100">
                                 <h4><t t-esc="slip.number or 'Payslip'"/></h4>
-                                <p class="text-muted">
-                                    <t t-esc="slip.date_from"/> → <t t-esc="slip.date_to"/>
-                                </p>
+                                <p class="text-muted"><t t-esc="slip.date_from"/> → <t t-esc="slip.date_to"/></p>
                                 <span class="badge bg-info text-dark"><t t-esc="slip.state"/></span>
 
                                 <div class="mt-auto">
-                                    <a t-attf-href="/my/payslips/{{ slip.id }}/download"
-                                       class="btn btn-primary btn-sm w-100 mt-2">Download PDF</a>
-
-                                    <!-- Attachments -->
+                                    <a t-attf-href="/my/payslips/{{ slip.id }}/download" class="btn btn-primary btn-sm w-100 mt-2">Download PDF</a>
                                     <t t-if="attachments.get(slip.id)">
                                         <ul class="list-unstyled small mt-2">
                                             <t t-foreach="attachments[slip.id]" t-as="att">
-                                                <li>
-                                                    <a t-att-href="'/web/content/%s?download=1' % att.id">
-                                                        <i class="fa fa-paperclip"></i> <t t-esc="att.name"/>
-                                                    </a>
-                                                </li>
+                                                <li><a t-att-href="'/web/content/%s?download=1' % att.id"><i class="fa fa-paperclip"></i> <t t-esc="att.name"/></a></li>
                                             </t>
                                         </ul>
                                     </t>
@@ -79,8 +67,12 @@
                             </div>
                         </div>
                     </t>
+                    <t t-if="not payslips">
+                        <div class="col-12">
+                            <div class="alert alert-info">No payslips found for the selected period.</div>
+                        </div>
+                    </t>
                 </div>
-
             </div>
         </t>
     </template>
