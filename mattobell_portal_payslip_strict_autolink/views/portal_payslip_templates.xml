@@ -1,0 +1,86 @@
+<odoo>
+  <template id="portal_no_employee">
+    <t t-call="website.layout">
+      <div class="container mt-5">
+        <div class="alert alert-warning">No employee record linked to your user account. Please contact HR.</div>
+      </div>
+    </t>
+  </template>
+
+  <template id="portal_access_denied">
+    <t t-call="website.layout">
+      <div class="container mt-5">
+        <div class="alert alert-danger">Access Denied — this payslip is not assigned to your account. Please contact HR.</div>
+      </div>
+    </t>
+  </template>
+
+  <template id="portal_payslips_page" name="Portal Payslips">
+    <t t-call="website.layout">
+      <div class="container mt-4">
+        <t t-if="request.env['ir.config_parameter'].sudo().get_param('mattobell.show_logo','1')=='1'">
+          <t t-set="logo_path">/mattobell_portal_payslip_strict_autolink/static/src/img/company_logo.png</t>
+          <t t-if="logo_path">
+            <img t-att-src="logo_path" style="height:60px;" alt="Company logo"/>
+          </t>
+        </t>
+
+        <div class="d-flex justify-content-between align-items-center mt-3 mb-3">
+          <h2>My Payslips</h2>
+        </div>
+
+        <form method="get" class="row mb-4">
+          <div class="col-md-3">
+            <label>Month</label>
+            <select name="month" class="form-select">
+              <option value="">All</option>
+              <t t-foreach="range(1,13)" t-as="m">
+                <option t-att-value="m" t-att-selected="m == selected_month"><t t-esc="m"/></option>
+              </t>
+            </select>
+          </div>
+          <div class="col-md-3">
+            <label>Year</label>
+            <select name="year" class="form-select">
+              <option value="">All</option>
+              <t t-foreach="range(2020,2031)" t-as="y">
+                <option t-att-value="y" t-att-selected="y == selected_year"><t t-esc="y"/></option>
+              </t>
+            </select>
+          </div>
+          <div class="col-md-3 d-flex align-items-end">
+            <button class="btn btn-primary w-100">Apply</button>
+          </div>
+        </form>
+
+        <t t-if="payslips">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Period</th>
+                <th>Reference</th>
+                <th>Status</th>
+                <th>Download</th>
+              </tr>
+            </thead>
+            <tbody>
+              <t t-foreach="payslips" t-as="slip">
+                <tr>
+                  <td><t t-esc="slip.date_from"/> → <t t-esc="slip.date_to"/></td>
+                  <td><t t-esc="slip.number or '—'"/></td>
+                  <td><t t-esc="slip.state"/></td>
+                  <td>
+                    <a t-att-href="'/my/payslips/%s/download' % slip.id" class="btn btn-sm btn-primary">Download</a>
+                  </td>
+                </tr>
+              </t>
+            </tbody>
+          </table>
+        </t>
+        <t t-if="not payslips">
+          <div class="alert alert-info">No payslips found for the selected period.</div>
+        </t>
+      </div>
+    </t>
+  </template>
+</odoo>
