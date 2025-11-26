@@ -4,7 +4,4 @@
         <field name="res_model">portal.payslip.settings</field>
         <field name="view_mode">form</field>
     </record>
-
-    <menuitem id="menu_pp_root" name="Portal Payslip" parent="base.menu_administration"/>
-    <menuitem id="menu_pp_settings" name="Settings" parent="menu_pp_root" action="portal_payslip_settings_action"/>
 </odoo>

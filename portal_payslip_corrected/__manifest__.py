@@ -1,8 +1,8 @@
 {
- 'name': 'Portal Payslip - Full Feature SaaS (OPL-1 Branded Dashboard Logo)',
- 'version': '1.0.1',
+ 'name': 'Portal Payslip - Full Feature SaaS (Corrected)',
+ 'version': '1.0.2',
  'license': 'OPL-1',
- 'summary': 'Full-feature payslip portal with filters, attachments, PDF download, settings (SaaS-safe)',
+ 'summary': 'Corrected version with proper template file name',
  'depends': ['hr_payroll','website'],
  'data': [
    'security/portal_payslip_security.xml',
