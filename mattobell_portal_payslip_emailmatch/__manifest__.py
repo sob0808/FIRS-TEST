@@ -1,8 +1,8 @@
 {
-    "name": "Mattobell Portal Payslip (Strict + Autolink)",
+    "name": "Mattobell Portal Payslip (Email Match)",
     "version": "1.0.0",
     "license": "OPL-1",
-    "summary": "Portal payslips with strict user=employee requirement and exact-email autolink.",
+    "summary": "Portal payslips where matching is done by employee.work_email == portal user email.",
     "category": "Human Resources",
     "depends": ["website","hr_payroll","portal"],
     "data": [

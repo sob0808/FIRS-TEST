@@ -2,7 +2,7 @@
   <template id="portal_no_employee">
     <t t-call="website.layout">
       <div class="container mt-5">
-        <div class="alert alert-warning">No employee record linked to your user account. Please contact HR.</div>
+        <div class="alert alert-warning">No employee record was found matching your account email. Please contact HR.</div>
       </div>
     </t>
   </template>
@@ -19,7 +19,7 @@
     <t t-call="website.layout">
       <div class="container mt-4">
         <t t-if="request.env['ir.config_parameter'].sudo().get_param('mattobell.show_logo','1')=='1'">
-          <t t-set="logo_path">/mattobell_portal_payslip_strict_autolink/static/src/img/company_logo.png</t>
+          <t t-set="logo_path">/mattobell_portal_payslip_emailmatch/static/src/img/company_logo.png</t>
           <t t-if="logo_path">
             <img t-att-src="logo_path" style="height:60px;" alt="Company logo"/>
           </t>
