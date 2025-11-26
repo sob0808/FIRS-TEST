@@ -1,0 +1,76 @@
+
+<odoo>
+    <template id="portal_no_employee">
+        <t t-call="website.layout">
+            <div class="container mt-4">
+                <img src="/portal_payslip_saas_full_feature_opl1_branded_final/static/src/img/company_logo.png" style="height:60px;">
+                <div class="alert alert-danger mt-3">
+                    No employee is linked to your user account.
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="portal_my_payslips_page">
+        <t t-call="website.layout">
+            <div class="container mt-4">
+                <img src="/portal_payslip_saas_full_feature_opl1_branded_final/static/src/img/company_logo.png" style="height:60px;">
+                <h2 class="mt-3">My Payslips</h2>
+
+                <form method="get" class="row mb-4 mt-3">
+                    <div class="col-md-4">
+                        <label>Month</label>
+                        <select name="month" class="form-select">
+                            <option value="">All</option>
+                            <t t-foreach="range(1,13)" t-as="m">
+                                <option t-att-value="m" t-att-selected="m == selected_month"><t t-esc="m"/></option>
+                            </t>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label>Year</label>
+                        <select name="year" class="form-select">
+                            <option value="">All</option>
+                            <t t-foreach="range(2020,2031)" t-as="y">
+                                <option t-att-value="y" t-att-selected="y == selected_year"><t t-esc="y"/></option>
+                            </t>
+                        </select>
+                    </div>
+                    <div class="col-md-4 d-flex align-items-end">
+                        <button class="btn btn-primary w-100">Apply Filters</button>
+                    </div>
+                </form>
+
+                <div class="row mb-4">
+                    <div class="col-md-3">
+                        <div class="card p-3 shadow-sm text-center">
+                            <h3><t t-esc="total_payslips"/></h3>
+                            <p>Total Payslips</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <t t-foreach="payslips" t-as="slip">
+                        <div class="col-md-4 mb-4">
+                            <div class="card p-3 shadow-sm">
+                                <h4><t t-esc="slip.number or 'Payslip'"/></h4>
+                                <p><b>Period:</b> <t t-esc="slip.date_from"/> → <t t-esc="slip.date_to"/></p>
+                                <a t-att-href="'/my/payslips/%s/download' % slip.id" class="btn btn-primary btn-sm w-100 mb-2">Download Payslip</a>
+
+                                <t t-if="attachments.get(slip.id)">
+                                    <small>Attachments:</small>
+                                    <ul>
+                                        <t t-foreach="attachments[slip.id]" t-as="att">
+                                            <li><a t-att-href="'/web/content/%s?download=1' % att.id"><t t-esc="att.name"/></a></li>
+                                        </t>
+                                    </ul>
+                                </t>
+                            </div>
+                        </div>
+                    </t>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

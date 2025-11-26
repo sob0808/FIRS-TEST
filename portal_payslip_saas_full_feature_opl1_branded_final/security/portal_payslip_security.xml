@@ -1,0 +1,8 @@
+
+<odoo>
+    <record id="payslip_portal_rule" model="ir.rule">
+        <field name="name">Portal: Own Payslips</field>
+        <field name="model_id" ref="hr_payroll.model_hr_payslip"/>
+        <field name="domain_force">[('employee_id.user_id','=', user.id)]</field>
+    </record>
+</odoo>

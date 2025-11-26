@@ -1,0 +1,18 @@
+
+<odoo>
+    <record id="portal_payslip_settings_form" model="ir.ui.view">
+        <field name="name">portal.payslip.settings.form</field>
+        <field name="model">portal.payslip.settings</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="signature_attachment"/>
+                        <field name="watermark_attachment"/>
+                        <field name="notes"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

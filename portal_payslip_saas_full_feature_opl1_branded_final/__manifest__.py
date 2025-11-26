@@ -1,4 +1,3 @@
-
 {
  'name': 'Portal Payslip - Full Feature SaaS (OPL-1 Branded)',
  'version': '1.0.0',

@@ -1,1 +1,0 @@
-# Settings model placeholder (same as previous working version).
