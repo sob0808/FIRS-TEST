@@ -1,0 +1,40 @@
+
+<odoo>
+ <template id="no_employee">
+   <t t-call="website.layout">
+     <div class="container mt-4 alert alert-danger">No employee record found for your account.</div>
+   </t>
+ </template>
+
+ <template id="denied">
+   <t t-call="website.layout">
+     <div class="container mt-4 alert alert-danger">Access denied for this payslip.</div>
+   </t>
+ </template>
+
+ <template id="page">
+   <t t-call="website.layout">
+     <div class="container mt-4">
+       <h2>My Payslips</h2>
+       <div class="row mt-3">
+         <t t-foreach="payslips" t-as="slip">
+           <div class="col-md-4 mb-3">
+             <div class="card p-3">
+               <h5><t t-esc="slip.number or 'Payslip'"/></h5>
+               <p><t t-esc="slip.date_from"/> → <t t-esc="slip.date_to"/></p>
+               <a t-att-href="'/my/payslips/%s/download' % slip.id" class="btn btn-primary btn-sm">Download PDF</a>
+               <t t-if="atts.get(slip.id)">
+                 <ul class="mt-2 small">
+                   <t t-foreach="atts[slip.id]" t-as="a">
+                     <li><a t-att-href="'/web/content/%s?model=ir.attachment&field=datas&filename_field=name&download=1' % a.id"><t t-esc="a.name"/></a></li>
+                   </t>
+                 </ul>
+               </t>
+             </div>
+           </div>
+         </t>
+       </div>
+     </div>
+   </t>
+ </template>
+</odoo>
