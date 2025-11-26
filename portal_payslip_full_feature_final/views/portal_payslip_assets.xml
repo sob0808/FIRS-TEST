@@ -1,7 +1,0 @@
-<odoo>
-    <template id="assets_frontend" inherit_id="web.assets_frontend" name="portal payslip css">
-        <xpath expr="." position="inside">
-            <link rel="stylesheet" href="/portal_payslip_full_feature_final/static/src/css/portal_styles.css"/>
-        </xpath>
-    </template>
-</odoo>
