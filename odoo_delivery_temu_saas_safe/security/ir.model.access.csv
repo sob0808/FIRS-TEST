@@ -1,5 +1,0 @@
-id,name,model_id:id,group_id,perm_read,perm_write,perm_create,perm_unlink
-access_delivery_batch,access_delivery_batch,model_delivery_batch,,1,1,1,1
-access_delivery_package,access_delivery_package,model_delivery_package,,1,1,1,1
-access_temu_location,access_temu_location,model_temu_location,,1,1,1,1
-access_delivery_scan_wizard,access_delivery_scan_wizard,model_delivery_scan_wizard,,1,1,1,1
