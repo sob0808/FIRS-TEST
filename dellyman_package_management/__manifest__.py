@@ -11,7 +11,6 @@
         'data/sequence_data.xml',
         'views/package_batch_views.xml',
         'views/package_order_views.xml',
-        'views/assets.xml',
         'views/menu.xml',
         'security/ir.model.access.csv'
     ],
