@@ -20,6 +20,15 @@
     <field name="arch" type="xml">
       <form string="Package">
         <sheet>
+<header>
+    <button name="action_set_status" string="Assigned" type="object" class="btn-primary" context="{'status': 'assigned'}"/>
+    <button name="action_set_status" string="Package Picked" type="object" class="btn-secondary" context="{'status': 'picked'}"/>
+    <button name="action_set_status" string="In Transit" type="object" class="btn-secondary" context="{'status': 'in_transit'}"/>
+    <button name="action_set_status" string="Delivered" type="object" class="btn-success" context="{'status': 'delivered'}"/>
+    <button name="action_set_status" string="Awaiting Return" type="object" class="btn-warning" context="{'status': 'awaiting_return'}"/>
+    <button name="action_set_status" string="Returned" type="object" class="btn-danger" context="{'status': 'returned'}"/>
+</header>
+
           <group>
             <field name="name"/>
             <field name="ord_id"/>
