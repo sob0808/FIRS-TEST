@@ -1,10 +1,10 @@
 {
-    "name": "Mattobell Payslip - Auto DMS Upload & Share",
+    "name": "Mattobell Portal Payslip (Final)",
     "version": "1.0.0",
     "license": "OPL-1",
-    "summary": "Auto-upload payslip PDF to Documents and share with employee portal user.",
+    "summary": "Employee payslips on portal (/my/payslips) - Matt O'Bell",
     "category": "Human Resources",
-    "depends": ["website","hr_payroll","portal","documents"],
+    "depends": ["website","hr_payroll","portal"],
     "data": [
         "views/portal_payslip_templates.xml",
         "views/website_menu.xml",

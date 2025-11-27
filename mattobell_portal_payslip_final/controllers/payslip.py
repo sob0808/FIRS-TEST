@@ -1,23 +1,14 @@
 from odoo import http
 from odoo.http import request
 
-class PortalPayslipEmailMatch(http.Controller):
-    """Portal payslip controller: lists and allows download when employee.work_email == user.email"""
-
-    def _user_email(self, user):
-        return (user.email or '').strip().lower()
+class PortalPayslipController(http.Controller):
 
     @http.route('/my/payslips', type='http', auth='user', website=True)
     def portal_payslips(self, month=None, year=None, **kw):
         user = request.env.user
-        user_email = self._user_email(user)
-        if not user_email:
-            return request.render('mattobell_portal_payslip_emailmatch.portal_no_employee')
-
-        # find employees with matching work_email
-        emp = request.env['hr.employee'].sudo().search([('work_email','ilike', user_email)], limit=1)
+        emp = request.env['hr.employee'].sudo().search([('user_id','=', user.id)], limit=1)
         if not emp:
-            return request.render('mattobell_portal_payslip_emailmatch.portal_no_employee')
+            return request.render('mattobell_portal_payslip_final.portal_no_employee')
 
         domain = [('employee_id','=', emp.id)]
         if month and year:
@@ -37,7 +28,7 @@ class PortalPayslipEmailMatch(http.Controller):
         Att = request.env['ir.attachment'].sudo()
         attachments = {s.id: Att.search([('res_model','=','hr.payslip'), ('res_id','=', s.id)]) for s in slips}
 
-        return request.render('mattobell_portal_payslip_emailmatch.portal_payslips_page', {
+        return request.render('mattobell_portal_payslip_final.portal_payslips_page', {
             'employee': emp,
             'payslips': slips,
             'attachments': attachments,
@@ -48,20 +39,11 @@ class PortalPayslipEmailMatch(http.Controller):
     @http.route('/my/payslips/<int:pid>/download', type='http', auth='user', website=True)
     def portal_payslip_download(self, pid, watermark='1', **kw):
         slip = request.env['hr.payslip'].sudo().browse(pid)
-        if not slip.exists():
+        # allow only employee owner
+        if not slip.exists() or slip.employee_id.user_id.id != request.uid:
             return request.not_found()
 
-        user = request.env.user
-        user_email = self._user_email(user)
-        if not user_email:
-            return request.render('mattobell_portal_payslip_emailmatch.portal_access_denied')
-
-        emp = slip.employee_id.sudo()
-        emp_email = (emp.work_email or '').strip().lower()
-        if not emp_email or emp_email != user_email:
-            return request.render('mattobell_portal_payslip_emailmatch.portal_access_denied')
-
-        # choose report: prefer custom mattobell, fallback to hr_payroll
+        # try custom mattobell report first, fallback to default if available
         report = None
         try:
             report = request.env.ref('mattobell_custom_payslip_pdf.mattobell_custom_payslip_pdf')

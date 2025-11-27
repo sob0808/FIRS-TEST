@@ -2,15 +2,7 @@
   <template id="portal_no_employee">
     <t t-call="website.layout">
       <div class="container mt-5">
-        <div class="alert alert-warning">No employee record was found matching your account email. Please contact HR.</div>
-      </div>
-    </t>
-  </template>
-
-  <template id="portal_access_denied">
-    <t t-call="website.layout">
-      <div class="container mt-5">
-        <div class="alert alert-danger">Access Denied — this payslip is not assigned to your account. Please contact HR.</div>
+        <div class="alert alert-warning">No employee record linked to your user account. Please contact HR.</div>
       </div>
     </t>
   </template>
@@ -19,7 +11,7 @@
     <t t-call="website.layout">
       <div class="container mt-4">
         <t t-if="request.env['ir.config_parameter'].sudo().get_param('mattobell.show_logo','1')=='1'">
-          <t t-set="logo_path">/mattobell_portal_payslip_emailmatch/static/src/img/company_logo.png</t>
+          <t t-set="logo_path">/mattobell_portal_payslip_final/static/src/img/company_logo.png</t>
           <t t-if="logo_path">
             <img t-att-src="logo_path" style="height:60px;" alt="Company logo"/>
           </t>
@@ -70,7 +62,7 @@
                   <td><t t-esc="slip.number or '—'"/></td>
                   <td><t t-esc="slip.state"/></td>
                   <td>
-                    <a t-att-href="'/my/payslips/%s/download' % slip.id" class="btn btn-sm btn-primary">Download</a>
+                    <a t-att-href="'/my/payslips/%s/download?watermark=%s' % (slip.id, '1')" class="btn btn-sm btn-primary">Download</a>
                   </td>
                 </tr>
               </t>
