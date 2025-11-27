@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <menuitem id="menu_dellyman_root" name="Dellyman" sequence="10"/>
+  <menuitem id="menu_dellyman_batches" name="Batches" parent="menu_dellyman_root" action="action_package_batch_tree"/>
+  <menuitem id="menu_dellyman_packages" name="Packages" parent="menu_dellyman_root" action="action_package_order_tree"/>
+</odoo>
