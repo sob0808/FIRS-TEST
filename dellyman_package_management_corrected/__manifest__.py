@@ -9,11 +9,11 @@
     'depends': ['base', 'barcodes', 'web'],
     'data': [
         'data/sequence_data.xml',
+        'security/ir.model.access.csv',
         'views/package_batch_views.xml',
         'views/package_order_views.xml',
         'views/assets.xml',
         'views/menu.xml',
-        'security/ir.model.access.csv'
     ],
     'installable': True,
     'application': True,
