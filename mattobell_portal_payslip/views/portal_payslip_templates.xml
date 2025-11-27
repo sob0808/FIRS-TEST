@@ -11,7 +11,7 @@
     <t t-call="website.layout">
       <div class="container mt-4">
         <t t-if="request.env['ir.config_parameter'].sudo().get_param('mattobell.show_logo','1')=='1'">
-          <t t-set="logo_path">/mattobell_portal_payslip_final/static/src/img/company_logo.png</t>
+          <t t-set="logo_path">/mattobell_portal_payslip/static/src/img/company_logo.png</t>
           <t t-if="logo_path">
             <img t-att-src="logo_path" style="height:60px;" alt="Company logo"/>
           </t>
