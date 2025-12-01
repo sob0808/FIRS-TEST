@@ -33,7 +33,7 @@
             <field name="customer_address"/>
           </group>
           <footer>
-            <button string="Set Received" type="object" name="action_set_status"  class="btn-primary" context="{'status':'received'}"/>
+            <button string="Set Received" type="object" name="action_set_status"  class="btn-primary" context="{'status':'received'}"/ context="{\'status\': \'delivered\'}">
             <button string="Set Assigned" type="object" name="action_set_status"  class="btn-secondary" context="{'status':'assigned'}"/>
             <button string="Set Picked" type="object" name="action_set_status"  class="btn-secondary" context="{'status':'picked'}"/>
             <button string="Set In Transit" type="object" name="action_set_status"  class="btn-secondary" context="{'status':'in_transit'}"/>

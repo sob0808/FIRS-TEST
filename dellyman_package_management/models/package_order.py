@@ -66,7 +66,7 @@ class PackageOrder(models.Model):
                 'current_status': data.get('status') or rec.current_status,
             })
 
-    def action_set_status(self, status):
+    def action_set_status(self):
         """Manual status change button helper."""
         for rec in self:
             if status not in dict(self._fields['current_status'].selection):
@@ -76,3 +76,8 @@ class PackageOrder(models.Model):
                 rec.date_delivered = fields.Datetime.now()
             if rec.batch_id:
                 rec.batch_id._compute_package_counts()
+
+    def action_set_status(self):
+        status=self.env.context.get('status')
+        for rec in self:
+            rec.status=status
