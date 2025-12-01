@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="view_package_order_tree" model="ir.ui.view">
+    <field name="name">package.order.list</field>
+    <field name="model">package.order</field>
+    <field name="arch" type="xml">
+      <list>
+        <field name="name"/>
+        <field name="ord_id"/>
+        <field name="current_status"/>
+        <field name="batch_id"/>
+        <field name="customer_name"/>
+      </list>
+    </field>
+  </record>
+
+  <record id="view_package_order_form" model="ir.ui.view">
+    <field name="name">package.order.form</field>
+    <field name="model">package.order</field>
+    <field name="arch" type="xml">
+      <form string="Package">
+        <sheet>
+          <group>
+            <field name="name"/>
+            <field name="ord_id"/>
+            <field name="batch_id"/>
+            <field name="current_status"/>
+          </group>
+          <group>
+            <field name="package_description"/>
+            <field name="customer_name"/>
+            <field name="customer_phone"/>
+            <field name="customer_address"/>
+          </group>
+          <footer>
+            <button string="Set Received" type="object" name="action_set_status"  class="btn-primary" context="{'status':'received'}"/>
+            <button string="Set Assigned" type="object" name="action_set_status"  class="btn-secondary" context="{'status':'assigned'}"/>
+            <button string="Set Picked" type="object" name="action_set_status"  class="btn-secondary" context="{'status':'picked'}"/>
+            <button string="Set In Transit" type="object" name="action_set_status"  class="btn-secondary" context="{'status':'in_transit'}"/>
+            <button string="Set Delivered" type="object" name="action_set_status"  class="btn-success" context="{'status':'delivered'}"/>
+            <button string="Set Awaiting Return" type="object" name="action_set_status"  class="btn-warning" context="{'status':'awaiting_return'}"/>
+            <button string="Set Returned" type="object" name="action_set_status"  class="btn-danger" context="{'status':'returned'}"/>
+          </footer>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <record id="action_package_order_tree" model="ir.actions.act_window">
+    <field name="name">Packages</field>
+    <field name="res_model">package.order</field>
+    <field name="view_mode">list,form,kanban</field>
+  </record>
+</odoo>
