@@ -42,6 +42,12 @@
             <button string="Set Returned" type="object" name="action_set_status"  class="btn-danger" context="{'status':'returned'}"/>
           </footer>
         </sheet>
+<div class="oe_chatter">
+    <field name="message_follower_ids"/>
+    <field name="message_ids"/>
+</div>
+
+</sheet>
       </form>
     </field>
   </record>

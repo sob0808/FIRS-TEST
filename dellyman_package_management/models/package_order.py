@@ -1,8 +1,9 @@
 from odoo import models, fields, api
-from odoo.exceptions import ValidationError
+from odoo.exceptions import UserError, ValidationError
 
 class PackageOrder(models.Model):
     _name = 'package.order'
+    _inherit = ['mail.thread']
     _description = 'Package Order / Item'
 
     name = fields.Char(string='Tracking ID', required=True, copy=False)
@@ -67,16 +68,37 @@ class PackageOrder(models.Model):
             })
 
     def action_set_status(self):
-        """Manual status change button helper."""
+        """Set status from context {'status': '...'} passed by buttons.
+        Posts a chatter message including the user's name."""
+        status = self.env.context.get('status')
+        if not status:
+            raise UserError('No status provided in context.')
+        status_labels = {
+            'received': 'Received',
+            'assigned': 'Assigned',
+            'picked': 'Picked',
+            'in_transit': 'In Transit',
+            'delivered': 'Delivered',
+            'awaiting_return': 'Awaiting Return',
+            'returned': 'Returned',
+        }
         for rec in self:
-            if status not in dict(self._fields['current_status'].selection):
-                raise ValidationError('Invalid status')
+            old_status = rec.current_status or 'none'
+            if status not in dict(rec._fields['current_status'].selection):
+                raise UserError('Invalid status: %s' % status)
             rec.current_status = status
             if status == 'delivered':
                 rec.date_delivered = fields.Datetime.now()
             if rec.batch_id:
-                rec.batch_id._compute_package_counts()
-
+                try:
+                    rec.batch_id._compute_package_counts()
+                except Exception:
+                    pass
+            # post chatter message with user name
+            old_lbl = status_labels.get(old_status, old_status)
+            new_lbl = status_labels.get(status, status)
+            user_name = self.env.user.name
+            rec.message_post(body=f"Status changed from <b>{old_lbl}</b> to <b>{new_lbl}</b> by {user_name}.")
     def action_set_status(self):
         status=self.env.context.get('status')
         for rec in self:
