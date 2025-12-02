@@ -1,7 +1,7 @@
 
 {
     "name": "Dellyman Package Management",
-    "version": "1.0",
+    "version": "1.0.0",
     "summary": "Manage batches, packages, and locations",
     "depends": ["base","mail"],
     "data": [
