@@ -6,5 +6,3 @@ class PackageLocation(models.Model):
     _description = "Package Location"
 
     name = fields.Char(required=True)
-    description = fields.Text()
-    package_ids = fields.One2many('package.order', 'location_id', string='Packages')
