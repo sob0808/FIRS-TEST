@@ -7,7 +7,7 @@ class PackageOrder(models.Model):
     _inherit = ['mail.thread','mail.activity.mixin']
 
     name = fields.Char(required=True)
-    ord_id = fields.Char()
+    ord_id = fields.Char(string='Tracking ID')
     batch_id = fields.Many2one('package.batch', string='Batch')
     location_id = fields.Many2one('package.location', string='Location')
     package_description = fields.Text()
