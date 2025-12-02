@@ -1,0 +1,18 @@
+
+{
+    "name": "Dellyman Package Management",
+    "version": "1.0",
+    "summary": "Batch-based package tracking with locations and statuses",
+    "author": "ChatGPT",
+    "category": "Operations",
+    "depends": ["base","mail"],
+    "data": [
+        "security/ir.model.access.csv",
+        "views/package_batch_views.xml",
+        "views/package_location_views.xml",
+        "views/package_order_views.xml",
+        "views/menu.xml"
+    ],
+    "application": true,
+    "installable": true
+}

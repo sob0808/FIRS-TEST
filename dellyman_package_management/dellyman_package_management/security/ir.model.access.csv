@@ -1,4 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_package_batch_user,access.package.batch.user,model_package_batch,base.group_user,1,1,1,1
-access_package_order_user,access.package.order.user,model_package_order,base.group_user,1,1,1,1
-access_package_location_user,access.package.location.user,model_package_location,base.group_user,1,1,1,1

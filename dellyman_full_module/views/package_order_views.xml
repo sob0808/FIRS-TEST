@@ -1,0 +1,56 @@
+
+<odoo>
+  <record id="view_package_order_tree" model="ir.ui.view">
+    <field name="name">package.order.tree</field>
+    <field name="model">package.order</field>
+    <field name="arch" type="xml">
+      <tree>
+        <field name="name"/>
+        <field name="ord_id"/>
+        <field name="batch_id"/>
+        <field name="location_id"/>
+        <field name="current_status"/>
+      </tree>
+    </field>
+  </record>
+
+  <record id="view_package_order_form" model="ir.ui.view">
+    <field name="name">package.order.form</field>
+    <field name="model">package.order</field>
+    <field name="arch" type="xml">
+      <form string="Package">
+        <sheet>
+          <group>
+            <field name="name"/>
+            <field name="ord_id"/>
+            <field name="batch_id"/>
+            <field name="location_id"/>
+            <field name="current_status"/>
+          </group>
+
+          <group>
+            <field name="package_description"/>
+            <field name="customer_name"/>
+            <field name="customer_phone"/>
+            <field name="customer_address"/>
+          </group>
+
+          <footer>
+            <button string="Set Received" type="object" name="action_set_status" context="{'status':'received'}"/>
+            <button string="Set Assigned" type="object" name="action_set_status" context="{'status':'assigned'}"/>
+            <button string="Set Picked" type="object" name="action_set_status" context="{'status':'picked'}"/>
+            <button string="Set In Transit" type="object" name="action_set_status" context="{'status':'in_transit'}"/>
+            <button string="Set Delivered" type="object" name="action_set_status" context="{'status':'delivered'}"/>
+            <button string="Set Awaiting Return" type="object" name="action_set_status" context="{'status':'awaiting_return'}"/>
+            <button string="Set Returned" type="object" name="action_set_status" context="{'status':'returned'}"/>
+          </footer>
+        </sheet>
+
+        <div class="oe_chatter">
+          <field name="message_follower_ids"/>
+          <field name="message_ids"/>
+        </div>
+      </form>
+    </field>
+  </record>
+</odoo>

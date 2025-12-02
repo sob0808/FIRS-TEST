@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<odoo>
-  <record id="seq_package_batch" model="ir.sequence">
-    <field name="name">Package Batch</field>
-    <field name="padding">5</field>
-    <field name="prefix">BATCH/%(year)s/</field>
-    <field name="implementation">no_gap</field>
-  </record>
-</odoo>

@@ -1,0 +1,26 @@
+
+<odoo>
+  <menuitem id="dellyman_root" name="Dellyman Packages"/>
+
+  <menuitem id="menu_batches" name="Batches" parent="dellyman_root" action="action_batches"/>
+  <menuitem id="menu_locations" name="Locations" parent="dellyman_root" action="action_locations"/>
+  <menuitem id="menu_orders" name="Packages" parent="dellyman_root" action="action_orders"/>
+
+  <record id="action_batches" model="ir.actions.act_window">
+    <field name="name">Batches</field>
+    <field name="res_model">package.batch</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+
+  <record id="action_locations" model="ir.actions.act_window">
+    <field name="name">Locations</field>
+    <field name="res_model">package.location</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+
+  <record id="action_orders" model="ir.actions.act_window">
+    <field name="name">Packages</field>
+    <field name="res_model">package.order</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+</odoo>
