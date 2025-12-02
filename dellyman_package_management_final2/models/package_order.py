@@ -1,5 +1,5 @@
 
-from odoo import models, fields, api
+from odoo import models, fields
 
 class PackageOrder(models.Model):
     _name = 'package.order'
@@ -31,5 +31,4 @@ class PackageOrder(models.Model):
             if status:
                 old = rec.current_status
                 rec.current_status = status
-                # post message in chatter
                 rec.message_post(body=f"Status changed from {old} to {status}", subtype_xmlid='mail.mt_note')
