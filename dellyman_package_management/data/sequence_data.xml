@@ -1,0 +1,9 @@
+<odoo>
+  <record id="seq_package_batch" model="ir.sequence">
+    <field name="name">Package Batch</field>
+    <field name="code">package.batch</field>
+    <field name="prefix">BATCH/2025/</field>
+    <field name="padding">5</field>
+    <field name="implementation">no_gap</field>
+  </record>
+</odoo>
