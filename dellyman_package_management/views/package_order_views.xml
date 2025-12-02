@@ -7,9 +7,8 @@
       <tree>
         <field name="name"/>
         <field name="ord_id"/>
-        <field name="batch_id"/>
-        <field name="location_id"/>
         <field name="current_status"/>
+        <field name="location_id"/>
       </tree>
     </field>
   </record>
@@ -18,14 +17,14 @@
     <field name="name">package.order.form</field>
     <field name="model">package.order</field>
     <field name="arch" type="xml">
-      <form string="Package">
+      <form>
         <sheet>
           <group>
             <field name="name"/>
             <field name="ord_id"/>
             <field name="batch_id"/>
-            <field name="location_id"/>
             <field name="current_status"/>
+            <field name="location_id"/>
           </group>
 
           <group>
@@ -45,11 +44,6 @@
             <button string="Set Returned" type="object" name="action_set_status" context="{'status':'returned'}"/>
           </footer>
         </sheet>
-
-        <div class="oe_chatter">
-          <field name="message_follower_ids"/>
-          <field name="message_ids"/>
-        </div>
       </form>
     </field>
   </record>
