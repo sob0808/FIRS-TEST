@@ -7,8 +7,9 @@
       <tree>
         <field name="name"/>
         <field name="ord_id"/>
-        <field name="current_status"/>
+        <field name="batch_id"/>
         <field name="location_id"/>
+        <field name="current_status"/>
       </tree>
     </field>
   </record>
@@ -17,14 +18,14 @@
     <field name="name">package.order.form</field>
     <field name="model">package.order</field>
     <field name="arch" type="xml">
-      <form>
+      <form string="Package">
         <sheet>
           <group>
             <field name="name"/>
             <field name="ord_id"/>
             <field name="batch_id"/>
-            <field name="current_status"/>
             <field name="location_id"/>
+            <field name="current_status"/>
           </group>
 
           <group>
@@ -35,15 +36,20 @@
           </group>
 
           <footer>
-            <button string="Set Received" type="object" name="action_set_status" context="{'status':'received'}"/>
-            <button string="Set Assigned" type="object" name="action_set_status" context="{'status':'assigned'}"/>
-            <button string="Set Picked" type="object" name="action_set_status" context="{'status':'picked'}"/>
-            <button string="Set In Transit" type="object" name="action_set_status" context="{'status':'in_transit'}"/>
-            <button string="Set Delivered" type="object" name="action_set_status" context="{'status':'delivered'}"/>
-            <button string="Set Awaiting Return" type="object" name="action_set_status" context="{'status':'awaiting_return'}"/>
-            <button string="Set Returned" type="object" name="action_set_status" context="{'status':'returned'}"/>
+            <button string="Set Received" type="object" name="action_set_status" context="{'status':'received'}" class="btn-primary"/>
+            <button string="Set Assigned" type="object" name="action_set_status" context="{'status':'assigned'}" class="btn-secondary"/>
+            <button string="Set Picked" type="object" name="action_set_status" context="{'status':'picked'}" class="btn-secondary"/>
+            <button string="Set In Transit" type="object" name="action_set_status" context="{'status':'in_transit'}" class="btn-secondary"/>
+            <button string="Set Delivered" type="object" name="action_set_status" context="{'status':'delivered'}" class="btn-success"/>
+            <button string="Set Awaiting Return" type="object" name="action_set_status" context="{'status':'awaiting_return'}" class="btn-warning"/>
+            <button string="Set Returned" type="object" name="action_set_status" context="{'status':'returned'}" class="btn-danger"/>
           </footer>
         </sheet>
+
+        <div class="oe_chatter">
+          <field name="message_follower_ids"/>
+          <field name="message_ids"/>
+        </div>
       </form>
     </field>
   </record>

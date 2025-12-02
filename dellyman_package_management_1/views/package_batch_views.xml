@@ -25,11 +25,9 @@
           <notebook>
             <page string="Packages">
               <field name="package_ids">
-                <tree editable="bottom">
+                <tree>
                   <field name="name"/>
-                  <field name="ord_id"/>
                   <field name="current_status"/>
-                  <field name="location_id"/>
                 </tree>
               </field>
             </page>
