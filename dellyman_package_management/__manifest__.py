@@ -1,6 +1,6 @@
 {
     'name': 'Dellyman Package Management',
-    'version': '1.0.0',
+    'version': '1.0',
     'summary': 'Manage packages, batches, and locations for Dellyman workflow',
     'description': """
         Custom package, location, and batch management workflow.
