@@ -13,6 +13,5 @@ class PackageBatch(models.Model):
     @api.model_create_multi
 def create(self, vals_list):
     for vals in vals_list:
-        # your code here, applied per record
-        pass
+        vals['name'] = self.env['ir.sequence'].next_by_code('package.batch') or 'New'
     return super().create(vals_list)
