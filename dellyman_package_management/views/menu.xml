@@ -1,35 +1,21 @@
 <odoo>
   <menuitem id="dellyman_root" name="Dellyman Packages" sequence="10"/>
-
   <record id="action_batches" model="ir.actions.act_window">
     <field name="name">Batches</field>
     <field name="res_model">package.batch</field>
-    <field name="view_mode">list,form</field>
+    <field name="view_mode">tree,form</field>
   </record>
-
   <record id="action_locations" model="ir.actions.act_window">
     <field name="name">Locations</field>
     <field name="res_model">package.location</field>
-    <field name="view_mode">list,form</field>
+    <field name="view_mode">tree,form</field>
   </record>
-
   <record id="action_orders" model="ir.actions.act_window">
     <field name="name">Packages</field>
     <field name="res_model">package.order</field>
-    <field name="view_mode">list,form</field>
+    <field name="view_mode">tree,form</field>
   </record>
-
   <menuitem id="menu_batches" name="Batches" parent="dellyman_root" action="action_batches"/>
   <menuitem id="menu_locations" name="Locations" parent="dellyman_root" action="action_locations"/>
   <menuitem id="menu_orders" name="Packages" parent="dellyman_root" action="action_orders"/>
-
-<record id="action_scan_package" model="ir.actions.act_window">
-  <field name="name">Scan Package</field>
-  <field name="res_model">scan.tracking.wizard</field>
-  <field name="view_mode">form</field>
-  <field name="target">new</field>
-</record>
-
-<menuitem id="menu_scan_package" name="Scan Package" parent="dellyman_root" action="action_scan_package"/>
-
 </odoo>

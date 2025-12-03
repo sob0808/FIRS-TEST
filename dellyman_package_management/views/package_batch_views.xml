@@ -1,13 +1,13 @@
 <odoo>
-  <record id="view_package_batch_list" model="ir.ui.view">
-    <field name="name">package.batch.list</field>
+  <record id="view_package_batch_tree" model="ir.ui.view">
+    <field name="name">package.batch.tree</field>
     <field name="model">package.batch</field>
     <field name="arch" type="xml">
-      <list>
+      <tree>
         <field name="sequence"/>
         <field name="arrival_date"/>
         <field name="name"/>
-      </list>
+      </tree>
     </field>
   </record>
 
@@ -25,12 +25,12 @@
           <notebook>
             <page string="Packages">
               <field name="package_ids">
-                <list editable="bottom">
+                <tree editable="bottom">
                   <field name="name"/>
                   <field name="ord_id"/>
                   <field name="current_status"/>
                   <field name="location_id"/>
-                </list>
+                </tree>
               </field>
             </page>
           </notebook>
