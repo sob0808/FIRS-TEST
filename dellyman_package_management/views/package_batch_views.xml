@@ -21,7 +21,6 @@
             <form string="Batch">
                 <sheet>
 
-                    <!-- Batch Details -->
                     <group>
                         <field name="name"/>
                         <field name="date_created" readonly="1"/>
@@ -29,9 +28,11 @@
                         <field name="package_count" readonly="1"/>
                     </group>
 
-                    <!-- Package Lines -->
                     <group string="Packages">
-                        <field name="package_ids" mode="tree,form" context="{}">
+                        <field name="package_ids"
+                               widget="one2many_list"
+                               mode="tree,form"
+                               context="{'default_batch_id': active_id}">
                             <tree editable="bottom">
                                 <field name="name"/>
                                 <field name="current_status"/>
