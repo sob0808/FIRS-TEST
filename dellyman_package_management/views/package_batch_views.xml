@@ -20,6 +20,8 @@
         <field name="arch" type="xml">
             <form string="Batch">
                 <sheet>
+
+                    <!-- Batch Details -->
                     <group>
                         <field name="name"/>
                         <field name="date_created" readonly="1"/>
@@ -27,8 +29,9 @@
                         <field name="package_count" readonly="1"/>
                     </group>
 
+                    <!-- Package Lines -->
                     <group string="Packages">
-                        <field name="package_ids" mode="tree,form">
+                        <field name="package_ids" mode="tree,form" context="{}">
                             <tree editable="bottom">
                                 <field name="name"/>
                                 <field name="current_status"/>
@@ -36,6 +39,7 @@
                             </tree>
                         </field>
                     </group>
+
                 </sheet>
             </form>
         </field>
