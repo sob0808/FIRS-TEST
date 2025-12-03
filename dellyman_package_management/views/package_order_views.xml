@@ -26,12 +26,14 @@
             <field name="location_id"/>
             <field name="current_status"/>
           </group>
+
           <group>
             <field name="package_description"/>
             <field name="customer_name"/>
             <field name="customer_phone"/>
             <field name="customer_address"/>
           </group>
+
           <footer>
             <button string="Set Received" type="object" name="action_set_status" context="{'status':'received'}" class="btn-primary"/>
             <button string="Set Assigned" type="object" name="action_set_status" context="{'status':'assigned'}" class="btn-secondary"/>
