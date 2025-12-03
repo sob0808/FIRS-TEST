@@ -11,7 +11,9 @@ class PackageBatch(models.Model):
     package_ids = fields.One2many('package.order', 'batch_id', string='Packages')
 
     @api.model_create_multi
-def create(self, vals_list):
-    for vals in vals_list:
-        vals['name'] = self.env['ir.sequence'].next_by_code('package.batch') or 'New'
-    return super().create(vals_list)
+    def create(self, vals_list):
+        for vals in vals_list:
+            vals['name'] = (
+                self.env['ir.sequence'].next_by_code('package.batch') or 'New'
+            )
+        return super().create(vals_list)
