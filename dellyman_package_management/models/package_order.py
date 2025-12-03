@@ -1,5 +1,12 @@
 from odoo import models, fields
 
+
+import requests
+from odoo import api, _
+from odoo.exceptions import UserError
+import logging
+_logger = logging.getLogger(__name__)
+
 class PackageOrder(models.Model):
     _name = "package.order"
     _inherit = ['mail.thread', 'mail.activity.mixin']
@@ -33,11 +40,6 @@ class PackageOrder(models.Model):
             rec.message_post(body=f"Status changed from {old} to {status}")
 
 
-import requests
-from odoo import api, _
-from odoo.exceptions import UserError
-import logging
-_logger = logging.getLogger(__name__)
 
     @api.model
     def fetch_from_dellyman(self, tracking_id):
