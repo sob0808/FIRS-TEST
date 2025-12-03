@@ -1,45 +1,40 @@
 <odoo>
-  <!-- Batch List View -->
-  <record id="view_package_batch_list" model="ir.ui.view">
-    <field name="name">package.batch.list</field>
-    <field name="model">package.batch</field>
-    <field name="arch" type="xml">
-      <list>
-        <field name="sequence"/>
-        <field name="arrival_date"/>
-        <field name="name"/>
-      </list>
-    </field>
-  </record>
+    <!-- List View -->
+    <record id="view_package_batch_list" model="ir.ui.view">
+        <field name="name">package.batch.list</field>
+        <field name="model">package.batch</field>
+        <field name="arch" type="xml">
+            <list string="Batches">
+                <field name="name"/>
+                <field name="date_created"/>
+                <field name="package_count"/>
+            </list>
+        </field>
+    </record>
 
-  <!-- Batch Form View -->
-  <record id="view_package_batch_form" model="ir.ui.view">
-    <field name="name">package.batch.form</field>
-    <field name="model">package.batch</field>
-    <field name="arch" type="xml">
-      <form>
-        <sheet>
-          <group>
-            <field name="sequence" readonly="1"/>
-            <field name="arrival_date"/>
-            <field name="name"/>
-          </group>
+    <!-- Form View -->
+    <record id="view_package_batch_form" model="ir.ui.view">
+        <field name="name">package.batch.form</field>
+        <field name="model">package.batch</field>
+        <field name="arch" type="xml">
+            <form string="Batch">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="date_created"/>
+                    </group>
 
-          <notebook>
-            <page string="Packages">
-              <field name="package_ids">
-                <list editable="bottom">
-                  <field name="name"/>
-                  <field name="ord_id"/>
-                  <field name="current_status"/>
-                  <field name="location_id"/>
-                </list>
-              </field>
-            </page>
-          </notebook>
-        </sheet>
-      </form>
-    </field>
-  </record>
-
+                    <group string="Packages">
+                        <field name="package_ids">
+                            <tree>
+                                <field name="name"/>
+                                <field name="current_status"/>
+                                <field name="location_id"/>
+                            </tree>
+                        </field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
 </odoo>
