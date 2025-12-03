@@ -8,6 +8,7 @@
                 <field name="name"/>
                 <field name="date_created"/>
                 <field name="package_count"/>
+                <field name="arrival_date"/>
             </list>
         </field>
     </record>
@@ -21,12 +22,14 @@
                 <sheet>
                     <group>
                         <field name="name"/>
-                        <field name="date_created"/>
+                        <field name="date_created" readonly="1"/>
+                        <field name="arrival_date"/>
+                        <field name="package_count" readonly="1"/>
                     </group>
 
                     <group string="Packages">
-                        <field name="package_ids">
-                            <tree>
+                        <field name="package_ids" mode="tree,form">
+                            <tree editable="bottom">
                                 <field name="name"/>
                                 <field name="current_status"/>
                                 <field name="location_id"/>
