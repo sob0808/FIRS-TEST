@@ -10,9 +10,9 @@ class PackageBatch(models.Model):
     arrival_date = fields.Date(default=fields.Date.context_today)
     package_ids = fields.One2many('package.order', 'batch_id', string='Packages')
 
-    @api.model
-    def create(self, vals):
-        if vals.get('name', 'New') == 'New':
-            vals['sequence'] = self.env['ir.sequence'].next_by_code('package.batch') or '/'
-            vals['name'] = vals.get('name', vals['sequence'])
-        return super(PackageBatch, self).create(vals)
+    @api.model_create_multi
+def create(self, vals_list):
+    for vals in vals_list:
+        # your code here, applied per record
+        pass
+    return super().create(vals_list)
