@@ -11,9 +11,9 @@
         'security/ir.model.access.csv',
         'data/sequence_data.xml',
         'views/menu.xml',
-        'views/package_batch_views.xml',
+        'views/package_order_views.xml',
         'views/package_location_views.xml',
-        'views/package_order_views.xml'
+        'views/package_batch_views.xml'
     ],
     'installable': True,
     'application': True,
