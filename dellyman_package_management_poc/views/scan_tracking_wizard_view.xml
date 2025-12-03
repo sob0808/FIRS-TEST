@@ -1,0 +1,17 @@
+<odoo>
+  <record id="view_scan_tracking_wizard_form" model="ir.ui.view">
+    <field name="name">scan.tracking.wizard.form</field>
+    <field name="model">scan.tracking.wizard</field>
+    <field name="arch" type="xml">
+      <form string="Scan Package">
+        <group>
+          <field name="tracking_id" placeholder="Scan or type Tracking ID"/>
+        </group>
+        <footer>
+          <button name="action_scan" type="object" class="btn-primary" string="Scan"/>
+          <button special="cancel" string="Close"/>
+        </footer>
+      </form>
+    </field>
+  </record>
+</odoo>
