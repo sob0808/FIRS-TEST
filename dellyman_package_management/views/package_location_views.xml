@@ -1,13 +1,13 @@
 <odoo>
-  <record id="view_package_location_tree" model="ir.ui.view">
-    <field name="name">package.location.tree</field>
+  <record id="view_package_location_list" model="ir.ui.view">
+    <field name="name">package.location.list</field>
     <field name="model">package.location</field>
     <field name="arch" type="xml">
-      <tree>
+      <list>
         <field name="name"/>
         <field name="code"/>
         <field name="description"/>
-      </tree>
+      </list>
     </field>
   </record>
 

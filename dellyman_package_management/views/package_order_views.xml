@@ -1,15 +1,15 @@
 <odoo>
-  <record id="view_package_order_tree" model="ir.ui.view">
-    <field name="name">package.order.tree</field>
+  <record id="view_package_order_list" model="ir.ui.view">
+    <field name="name">package.order.list</field>
     <field name="model">package.order</field>
     <field name="arch" type="xml">
-      <tree>
+      <list>
         <field name="name"/>
         <field name="ord_id"/>
         <field name="batch_id"/>
         <field name="location_id"/>
         <field name="current_status"/>
-      </tree>
+      </list>
     </field>
   </record>
 
